@@ -66,8 +66,13 @@ class CatCollectionViewController: UICollectionViewController {
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! CatCollectionViewCell
-        let cat = cats[indexPath.item]
-        cell.catImageView.kf.setImage(with: cat.image.url)
+        if indexPath.item.isMultiple(of: 3) {
+            cell.catImageView.image = UIImage(named: "peter")
+        } else {
+            let cat = cats[indexPath.item]
+            cell.catImageView.kf.setImage(with: cat.image.url)
+        }
+       
         return cell
     }
 
